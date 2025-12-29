@@ -113,7 +113,147 @@ Inside of [Report.md](../Report.md) you will need to answer a series of question
 > A primary purpose of this activity is to get you working through a process in addition to writing code. In software engineering the process you follow is often just as important as the code you write. This is because the process is what allows you to work with others, and to be able to maintain and update code over time. It may seem tedious right now, but it is a skill that will pay off in the long run.
 
 
+## 🤖 Use of LLMs
 
+You may use LLMs for coding assistance, but **NOT for design documents or reports**. Since this assignment emphasizes inheritance and polymorphic design, **all architectural decisions must be yours**.
+
+### What's Different This Time
+
+This assignment involves complex filtering logic that benefits from smart inheritance hierarchies and enums. LLMs can help you **refactor and simplify** code you've already designed, but shouldn't design your class structure for you.
+
+### Recommended LLM Usage
+
+#### ✅ **Good Uses:**
+1. **Generating unit tests** (after you design your classes)
+2. **Code completion** for boilerplate after detailed comments
+3. **Refactoring for simplicity** after your initial implementation
+4. **Explaining Java features** (enums, generics, polymorphism)
+5. **Learning design patterns** (Strategy, Factory, etc.)
+
+#### ❌ **Avoid:**
+- Having AI design your inheritance hierarchy
+- Asking AI to plan your filter architecture from scratch
+- Using AI to write design rationale or report sections
+- Copy-pasting AI-generated designs without understanding them
+
+### Smart Prompting for This Assignment
+
+#### **For Learning Design Patterns**
+
+````
+I need to implement sorting functionality where different fields (like name, rating, date) require different comparison logic. Some fields are strings, some are integers, some are doubles.
+
+Please explain the Strategy Pattern and how it could help me design a flexible sorting system:
+1. What is the Strategy Pattern and when is it useful?
+2. How would I structure interfaces and classes to support multiple sort strategies?
+3. Show me a simple example with two different sort strategies (e.g., sorting strings vs. integers)
+4. How does this pattern help avoid deep if-else chains?
+5. How can I combine this with enums to map field IDs to sort strategies?
+
+Keep the explanation conceptual first, then show a minimal code example. I want to understand the pattern before applying it to my specific problem.
+````
+
+#### **For Code Review & Simplification** (Use this approach!)
+
+````
+I've implemented a filter system but it has deep nesting (3-4 levels of if statements). Here's my code:
+
+```java
+[paste your working code]
+```
+
+My design uses these classes: [list your classes]
+
+Please review my code and suggest ways to:
+1. Reduce nesting to 1-2 levels maximum using polymorphism
+2. Identify repeated patterns that could use inheritance
+3. Suggest where enums could replace conditional logic
+4. Point out violations of the Single Responsibility Principle
+
+**Important:** Don't redesign my architecture. Focus on simplifying what I've already built while preserving my design intent.
+````
+
+#### **For Understanding Inheritance Patterns**
+
+````
+I'm implementing a filtering system where filters need to handle different data types (String, Integer, Double). I've designed the following class hierarchy:
+
+```java
+[your class structure]
+```
+
+I want to ensure I'm using inheritance effectively. Please:
+1. Verify this follows good OOP principles
+2. Suggest if I'm missing any abstract methods or interfaces
+3. Identify any code duplication I could eliminate through inheritance
+4. Confirm I'm not over-engineering it
+
+Do NOT suggest a completely different design - just help me polish what I have.
+````
+
+#### **For Connecting Enums with Strategies**
+
+````
+I have an enum for field IDs like this:
+
+```java
+public enum FieldID {
+    NAME, RATING, DATE, PRICE
+}
+```
+
+And I'm implementing sorting where each field type needs different comparison logic. 
+
+Please explain:
+1. How can I connect each enum value to a specific sort strategy?
+2. Should strategies be stored in the enum itself or in a separate factory/map?
+3. Show me a simple example of retrieving the right strategy based on a FieldID
+4. What are the pros/cons of different approaches?
+
+I want to understand the architectural options before choosing one.
+````
+
+#### **⚠️ Dangerous Prompt (Don't Use Early)**
+
+````
+❌ I am working on a complex filtering mechanism that will filter fields based on field ID, then based on a value, such as rating > 4. However, some fields are strings, some are integers, and there are a lot of options. Can you help me plan out good ways to help minimize the code?
+````
+
+**Why this is risky:** You'll get a complete design handed to you, which defeats the learning objective. Use this type of prompt **only after** you have a working design and want alternative perspectives. Also, in the past, it has often guided students trying to use hashtables to parse the type of filtering - you will want to avoid that path, it is actually more complex and not very helpful. It is REALLY EASY to have AI guide you down the wrong path into a design and implementation whole. 
+
+### Test-Driven Development Reminder
+
+Continue writing tests **before** implementation:
+1. Design your class hierarchy (paper/whiteboard)
+2. Write test cases for one class
+3. Implement that class
+4. Run tests and refactor
+5. Repeat for the next class
+
+Use LLMs to generate test cases after YOU define what needs testing.
+
+### Pre-Submission Checklist
+
+- [ ] I designed my inheritance hierarchy myself
+- [ ] I chose which classes are abstract and why
+- [ ] I decided what methods belong in parent vs child classes
+- [ ] I used LLMs only for code improvement, not design
+- [ ] I can justify every design decision in my report
+- [ ] My report contains my own analysis (no AI-generated content)
+- [ ] I documented my LLM usage with specific examples
+
+### LLM Disclosure Requirements
+
+Include in your submission:
+1. **What you used AI for** (e.g., "refactoring nested conditionals," "generating unit tests," "learning Strategy pattern")
+2. **Example prompts** showing how you used AI
+3. **What you changed** from AI suggestions
+4. **Design decisions AI didn't make** for you
+
+**Remember:** This assignment tests your ability to design with inheritance. AI can help you code cleaner, but the design thinking must be yours.
+
+> [!IMPORTANT]
+> Don't forget to commit often! This will help you roll back if you run into any issues. 
 
 ## Submission
 
